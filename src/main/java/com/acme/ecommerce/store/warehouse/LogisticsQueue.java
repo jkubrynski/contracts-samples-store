@@ -1,13 +1,13 @@
 package com.acme.ecommerce.store.warehouse;
 
 import org.springframework.cloud.stream.annotation.Input;
-import org.springframework.cloud.stream.annotation.Output;
-import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.SubscribableChannel;
 
 public interface LogisticsQueue {
 
-	@Input("logisticsQueue")
+	String LOGISTICS_QUEUE_NAME = "logisticsQueue";
+
+	@Input(LOGISTICS_QUEUE_NAME)
 	SubscribableChannel logisticsQueueSubscription();
 
 }

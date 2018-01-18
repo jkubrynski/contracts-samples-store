@@ -14,21 +14,17 @@ public class WarehouseChannelTest extends AbstractWarehouseContractTest {
 	StubFinder stubFinder;
 
 	@Autowired
-	LogisticsQueue logisticsQueue;
-
-	Message<PackageMessage> receivedMessage;
+	LogisticsEventListener logisticsEventListener;
 
 	@Test
 	public void shouldReturnProductAvailability() {
-		// given
-		logisticsQueue.logisticsQueueSubscription().subscribe(message -> this.receivedMessage = (Message<PackageMessage>) message);
-
 		// when
 		stubFinder.trigger("packageSentMessage");
 
 		// then
-		assertThat(receivedMessage.getPayload().getEventType()).isEqualTo(LogisticsEventType.PACKAGE_SENT);
-		assertThat(receivedMessage.getPayload().getObjectId()).isEqualTo("7JS8HD8");
+		PackageMessage receivedMessage = logisticsEventListener.getPackageMessage();
+		assertThat(receivedMessage.getEventType()).isEqualTo(LogisticsEventType.PACKAGE_SENT);
+		assertThat(receivedMessage.getObjectId()).isEqualTo("7JS8HD8");
 
 	}
 
