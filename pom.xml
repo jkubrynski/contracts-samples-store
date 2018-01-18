@@ -55,19 +55,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>com.acme.ecommerce</groupId>
-			<artifactId>warehouse</artifactId>
-			<version>(0,]</version>
-			<classifier>stubs</classifier>
-			<exclusions>
-				<exclusion>
-					<groupId>*</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
 	</dependencies>
 
 	<dependencyManagement>
